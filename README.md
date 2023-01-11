@@ -60,7 +60,7 @@ joined topic: 155c8b340ab95eca5a2bc72a1d2a2befcbe6b2e9a8805f205efb49f497122684
 One file, same functionality for one or more peers.  
 As long as peers are online and connected at the same time, they can exchange chat messages in examples 1 and 2. What's lacking is persistence, provided next by hypercore, to where the messages can be stored locally by the publishing peer while offline, then synced with subscribing peers when connected again over hyperswarm.
 
-## Hypercore
+## 3. Hypercore
 In this example there are two files, writer.mjs and reader.mjs, each with their own terminal.  
 The writer takes input from the terminal and persists it in a local directory, /writer-storage, then replicates the data over hyperswarm.  
 The reader syncs with the writer hypercore over hyperswarm and persists the data locally to /reader-storage.    
