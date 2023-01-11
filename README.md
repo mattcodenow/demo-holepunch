@@ -60,7 +60,7 @@ joined topic: 155c8b340ab95eca5a2bc72a1d2a2befcbe6b2e9a8805f205efb49f497122684
 One file, same functionality for one or more peers.  
 As long as peers are online and connected at the same time, they can exchange chat messages in examples 1 and 2. What's lacking is persistence, provided next by hypercore, to where the messages can be stored locally by the publishing peer while offline, then synced with subscribing peers when connected again over hyperswarm.
 
-## 3. Hypercore
+## 3. Hypercore - Replicate Single Hypercore
 In this example there are two files, writer.mjs and reader.mjs, each with their own terminal.  
 The writer takes input from the terminal and persists it in a local directory, /writer-storage, then replicates the data over hyperswarm.  
 The reader syncs with the writer hypercore over hyperswarm and persists the data locally to /reader-storage.    
@@ -89,4 +89,51 @@ In the reader terminal:
 $ node 3/reader.mjs df23c949e4b498af6fa8a84b7e31edb81d85e6420a6b759ba2289978fa270387
 Skipping 0 earlier blocks...
 Block 0: asdasd
+```
+
+## 4. Corestore - Replicate Multiple Hypercores
+A corestore is a way to store and sync multiple hypercores.  
+In this example there are two files, writer.mjs and reader.mjs, each with their own terminal.  
+
+In the writer terminal:
+```
+$ node 4/writer.mjs
+main core key: 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+```
+
+In the reader terminal:
+```
+$ node 4/reader.mjs 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+```
+
+In the writer terminal, type in 5 or 6 letters and press enter:
+```
+$ node 4/writer.mjs
+main core key: 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+asdasd
+appending long data to core3
+```
+
+In the reader terminal:
+```
+$ node 4/reader.mjs 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+Block 0 in Core 9aa203ef79062648ebc387f1b3f2df659f04b9b235b10d8d36cbf3f9d4821340: asdasd
+```
+
+In the writer terminal, type in 2 letters and press enter:
+```
+$ node 4/writer.mjs
+main core key: 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+asdasd
+appending long data to core3
+as
+appending short data to core2
+```
+
+In the reader terminal:
+```
+$ node 4/reader.mjs 259008471a3acd890a50463e75b8621827b0657198d951c10a37e592409f546a
+Block 0 in Core 9aa203ef79062648ebc387f1b3f2df659f04b9b235b10d8d36cbf3f9d4821340: asdasd
+
+Block 0 in Core 9d20834415b44467b1154aeffc936c1cbec8fba5c2699bdea2cdaf00fc8503d2: as
 ```
