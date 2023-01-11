@@ -34,7 +34,7 @@ got connection!
 Hello
 ```
 
-## 2. Connecting Many Peers By Topic
+## 2. Hyperswarm - Connecting Many Peers By Topic
 Using [Hyperswarm](https://docs.holepunch.to/building-blocks/hyperswarm) provides a higher level interface to manage the connecting and disconnecting of peers within the hyperswarm DHT.  
 
 In a terminal, start the first peer at /2/peer.mjs:  
