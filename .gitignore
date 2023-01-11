@@ -1,2 +1,4 @@
 node_modules
+reader-storage
+writer-storage
 .env
